@@ -113,14 +113,14 @@ namespace DLS.ChipCreation
 		void UpdateSaveValidity()
 		{
 			ChipNameState nameState = ValidateChipName();
-			saveButton.SetInteractable(nameState is ChipNameState.ValidNewName or ChipNameState.ValidSameName);
+			saveButton.SetInteractable(nameState == ChipNameState.ValidNewName || nameState == ChipNameState.ValidSameName);
 			saveCopyButton.SetInteractable(nameState is ChipNameState.ValidNewName);
 			switch (nameState)
 			{
 				case ChipNameState.AlreadyExists:
 					nameErrorMessage.text = "Another chip with this name already exists.";
 					break;
-				case ChipNameState.Reserved or ChipNameState.BuiltinName:
+				case ChipNameState.Reserved : case ChipNameState.BuiltinName:
 					nameErrorMessage.text = "This name is reserved. Please choose something else.";
 					break;
 				default:

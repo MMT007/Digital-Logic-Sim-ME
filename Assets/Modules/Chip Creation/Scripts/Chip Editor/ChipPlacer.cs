@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using DLS.ChipData;
 using System.Linq;
+using MMT007Utils;
 using UnityEngine.InputSystem;
 
 namespace DLS.ChipCreation
@@ -145,7 +146,7 @@ namespace DLS.ChipCreation
 			bool shiftKeyDown = Keyboard.current.leftShiftKey.isPressed || Keyboard.current.rightShiftKey.isPressed;
 
 			bool snapping = shiftKeyDown && busPlacementPoints != null && busPlacementPoints.Count > 0;
-			Vector2 snapOrigin = snapping ? busPlacementPoints[^1] : Vector2.zero;
+			Vector2 snapOrigin = snapping ? ListUtils.GetFromEnd(busPlacementPoints,1) : Vector2.zero;
 
 			Vector2 mousePos = MouseHelper.CalculateAxisSnappedMousePosition(snapOrigin, snapping);
 
@@ -158,7 +159,7 @@ namespace DLS.ChipCreation
 			// Placing wire
 			if (placementState == BusDisplay.PlacementState.PlacingWire)
 			{
-				Vector2 offset = mousePos - busPlacementPoints[^1];
+				Vector2 offset = mousePos - ListUtils.GetFromEnd(busPlacementPoints,1);
 				Vector2 dir;
 				if (offset.sqrMagnitude > 0)
 				{
@@ -166,7 +167,7 @@ namespace DLS.ChipCreation
 				}
 				else
 				{
-					dir = busPlacementPoints.Count > 1 ? (busPlacementPoints[^1] - busPlacementPoints[^2]).normalized : Vector2.right;
+					dir = busPlacementPoints.Count > 1 ? (ListUtils.GetFromEnd(busPlacementPoints,1) - ListUtils.GetFromEnd(busPlacementPoints,2)).normalized : Vector2.right;
 				}
 
 				float spacing = multiChipSpacing + busChips[0].GetBounds().size.y;
@@ -174,19 +175,19 @@ namespace DLS.ChipCreation
 				for (int i = 0; i < busChips.Length; i++)
 				{
 					float ti = i - (busChips.Length - 1) / 2f;
-					Vector2 offsetFromLast = mousePos - busPlacementPoints[^1];
+					Vector2 offsetFromLast = mousePos - ListUtils.GetFromEnd(busPlacementPoints,1);
 					Vector2 dirFromLast = offsetFromLast.normalized;
 
 					Vector2 busPoint = mousePos + new Vector2(dir.y, -dir.x) * ti * spacing;
 
 					// Rotate bus points to face new direction
-					Vector2 prevBusPointDesired = busPlacementPoints[^1] + new Vector2(dir.y, -dir.x) * ti * spacing;
+					Vector2 prevBusPointDesired = ListUtils.GetFromEnd(busPlacementPoints,1) + new Vector2(dir.y, -dir.x) * ti * spacing;
 					// If anchor points have been added to the bus line, then handle offsetting those anchor points to make bus lines stay same dst apart
 					// (for when placing multiple bus lines at a time)
 					if (busPlacementPoints.Count > 1)
 					{
-						Vector2 dirOld = (busPlacementPoints[^1] - busPlacementPoints[^2]).normalized;
-						Vector2 prevBusPoint = busPlacementPoints[^1] + new Vector2(dirOld.y, -dirOld.x) * ti * spacing;
+						Vector2 dirOld = (ListUtils.GetFromEnd(busPlacementPoints,1) - ListUtils.GetFromEnd(busPlacementPoints,2)).normalized;
+						Vector2 prevBusPoint = ListUtils.GetFromEnd(busPlacementPoints,1) + new Vector2(dirOld.y, -dirOld.x) * ti * spacing;
 						var info = MathsHelper.LineIntersectsLine(prevBusPoint, prevBusPoint + dirOld, busPoint, busPoint + dir);
 						if (info.intersects)
 						{

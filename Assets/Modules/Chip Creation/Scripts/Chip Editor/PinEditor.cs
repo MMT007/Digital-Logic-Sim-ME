@@ -27,7 +27,7 @@ namespace DLS.ChipCreation
 		{
 			if (MouseHelper.LeftMousePressedThisFrame())
 			{
-				if (selectedPin is not null)
+				if (selectedPin != null)
 				{
 					if (selectedPin.Handle == handleUnderMouse)
 					{
@@ -40,7 +40,7 @@ namespace DLS.ChipCreation
 						selectedPin.Handle.Deselect();
 					}
 				}
-				if (handleUnderMouse is not null)
+				if (handleUnderMouse != null)
 				{
 					handleUnderMouse.Select();
 				}
@@ -48,7 +48,7 @@ namespace DLS.ChipCreation
 
 			if (MouseHelper.LeftMouseReleasedThisFrame() && chipEditor.CanEdit)
 			{
-				if (selectedPin is not null)
+				if (selectedPin != null)
 				{
 					pinUI.Show(selectedPin.GetPin().transform.position, selectedPin.GetPin().IsInputType, selectedPin.PinName);
 				}
@@ -81,7 +81,7 @@ namespace DLS.ChipCreation
 
 		void OnPinCreated(EditablePin pin)
 		{
-			if (selectedPin is not null && pin != selectedPin)
+			if (selectedPin != null && pin != selectedPin)
 			{
 				selectedPin.Handle.Deselect();
 			}
@@ -113,7 +113,7 @@ namespace DLS.ChipCreation
 		void OnDestroy()
 		{
 			pinUI = FindObjectOfType<PinUI>();
-			if (pinUI is not null)
+			if (pinUI != null)
 			{
 				pinUI.NameChanged -= OnNameChanged;
 				pinUI.DeletePressed -= OnDeletePin;

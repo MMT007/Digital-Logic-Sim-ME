@@ -12,7 +12,7 @@ namespace DLS.Simulation
 		public string name;
 		public SimChipDescription description;
 
-		public bool IsBuiltin => builtinChip is not null;
+		public bool IsBuiltin => builtinChip != null;
 		// Null if not a builtin chip
 		public BuiltinSimChip builtinChip;
 
@@ -28,8 +28,8 @@ namespace DLS.Simulation
 		public SimChip(int id)
 		{
 			this.ID = id;
-			subChipCyclePins = new();
-			subChipFloatingInputPins = new();
+			subChipCyclePins = new List<SimPin>();
+			subChipFloatingInputPins = new List<SimPin>();
 		}
 
 

@@ -1,3 +1,4 @@
+using DLS.ChipCreation;
 using Newtonsoft.Json;
 
 namespace DLS.ChipData
@@ -24,10 +25,10 @@ namespace DLS.ChipData
 
 		// ---- Helpers ----
 		[JsonIgnore]
-		public bool BelongsToSubChip => PinType is PinType.SubChipInputPin or PinType.SubChipOutputPin;
+		public bool BelongsToSubChip => PinType == PinType.SubChipInputPin || PinType == PinType.SubChipOutputPin;
 
 		[JsonIgnore]
-		public bool IsInputPin => PinType is PinType.ChipInputPin or PinType.SubChipInputPin;
+		public bool IsInputPin => PinType == PinType.ChipInputPin || PinType == PinType.SubChipInputPin;
 
 		public static bool AreSame(PinAddress a, PinAddress b)
 		{

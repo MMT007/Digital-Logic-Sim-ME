@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using DLS.ChipData;
 using System.Linq;
 using UnityEngine.InputSystem;
+using MMT007Utils;
 
 namespace DLS.ChipCreation
 {
@@ -17,7 +18,7 @@ namespace DLS.ChipCreation
 		// Note: this event is only triggered on wires that have been connected, not on wires deleted during placement
 		public event System.Action<Wire> WireDeleted;
 
-		public ReadOnlyCollection<Wire> AllWires => new(allConnectedWires);
+		public ReadOnlyCollection<Wire> AllWires => new ReadOnlyCollection<Wire>(allConnectedWires);
 		public bool IsCreatingWire => wireUnderConstruction != null;
 		public override bool IsBusy() => IsCreatingWire;
 		public Wire WireUnderMouse => wireUnderMouse;
@@ -265,7 +266,7 @@ namespace DLS.ChipCreation
 						StopCreatingWire();
 					}
 				}
-				else if (wireUnderMouse is not null)
+				else if (wireUnderMouse != null)
 				{
 					wireUnderMouse.DeleteWire();
 					wireUnderMouse = null;
@@ -473,7 +474,7 @@ namespace DLS.ChipCreation
 			}
 			if (!pinB.IsBusPin)
 			{
-				points[^1] = pinB.transform.position;
+				points[points.Length - 1] = pinB.transform.position;
 			}
 			wire.SetAnchorPoints(points, true);
 
@@ -487,7 +488,7 @@ namespace DLS.ChipCreation
 		Vector2 CalculateSnappedMousePosition()
 		{
 			bool snap = Keyboard.current.leftShiftKey.isPressed;
-			return MouseHelper.CalculateAxisSnappedMousePosition(wireUnderConstruction.AnchorPoints[^1], snap);
+			return MouseHelper.CalculateAxisSnappedMousePosition(ListUtils.GetFromEnd(wireUnderConstruction.AnchorPoints,1), snap);
 		}
 
 		void InitValidConnectionLookup()

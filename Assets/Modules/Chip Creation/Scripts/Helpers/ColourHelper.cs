@@ -13,7 +13,7 @@ namespace DLS.ChipCreation
 
 		public static Color GenerateRandomChipColour()
 		{
-			System.Random rng = new();
+			System.Random rng = new System.Random();
 			float hue = (float)rng.NextDouble();
 			float sat = Mathf.Lerp(0.2f, 1, (float)rng.NextDouble());
 			float val = Mathf.Lerp(0.2f, 1, (float)rng.NextDouble());

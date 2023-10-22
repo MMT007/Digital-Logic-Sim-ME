@@ -10,7 +10,7 @@ namespace DLS.ChipCreation
 	public class ChipSelector : ControllerBase
 	{
 		public event System.Action<ChipBase> ChipSelected;
-		public ReadOnlyCollection<ChipBase> SelectedChips => new(selectedChips);
+		public ReadOnlyCollection<ChipBase> SelectedChips => new ReadOnlyCollection<ChipBase>(selectedChips);
 		public int NumSelectedChips => selectedChips.Count;
 		public bool IsBoxSelecting => isBoxSelecting;
 		public override bool IsBusy() => IsBoxSelecting;
@@ -151,7 +151,7 @@ namespace DLS.ChipCreation
 		{
 			chip.ChipDeleted -= OnChipDeleted;
 			chip.ChipDeleted += OnChipDeleted;
-			if (chip.MouseInteraction is not null)
+			if (chip.MouseInteraction != null)
 			{
 				chip.MouseInteraction.LeftMouseDown += OnChipPressedLeftMouse;
 				chip.MouseInteraction.RightMouseDown += OnChipPressedRightMouse;

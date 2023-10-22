@@ -92,7 +92,7 @@ namespace DLS.ChipCreation
 
 		void OnSubChipAdded(ChipBase chip)
 		{
-			if (chip.MouseInteraction is not null)
+			if (chip.MouseInteraction != null)
 			{
 				chip.MouseInteraction.LeftMouseDown += OnChipPressed;
 			}
@@ -102,7 +102,7 @@ namespace DLS.ChipCreation
 		{
 			if (isMovingChips)
 			{
-				if (chipsToMove is not null)
+				if (chipsToMove != null)
 				{
 					for (int i = 0; i < chipsToMove.Length; i++)
 					{
@@ -118,7 +118,7 @@ namespace DLS.ChipCreation
 		{
 			if (isMovingChips)
 			{
-				if (chipsToMove is not null)
+				if (chipsToMove != null)
 				{
 					foreach (ChipBase chip in chipsToMove)
 					{

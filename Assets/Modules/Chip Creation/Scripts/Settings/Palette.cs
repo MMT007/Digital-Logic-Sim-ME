@@ -10,7 +10,7 @@ namespace DLS.ChipCreation
 	public class Palette : ScriptableObject
 	{
 		public VoltageColour GetDefaultColours() => voltageColours[defaultIndex];
-		public ReadOnlyCollection<VoltageColour> Colours => new(voltageColours);
+		public ReadOnlyCollection<VoltageColour> Colours => new ReadOnlyCollection<VoltageColour>(voltageColours);
 
 
 		[SerializeField] int defaultIndex;

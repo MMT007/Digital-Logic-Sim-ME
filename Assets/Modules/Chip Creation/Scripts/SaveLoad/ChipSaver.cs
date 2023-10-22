@@ -54,7 +54,7 @@ namespace DLS.ChipCreation
 		public static ChipDescription[] LoadAllSavedChips(string projectName)
 		{
 			string path = SavePaths.ChipsPath(projectName);
-			List<ChipDescription> loadedChips = new();
+			List<ChipDescription> loadedChips = new List<ChipDescription>();
 			if (Directory.Exists(path))
 			{
 				string[] filePaths = Directory.GetFiles(path, "*.json");
@@ -77,7 +77,7 @@ namespace DLS.ChipCreation
 		// Load a single saved chip file
 		static ChipDescription LoadSavedChip(string path)
 		{
-			using (StreamReader reader = new(path))
+			using (StreamReader reader = new StreamReader(path))
 			{
 				string saveString = reader.ReadToEnd();
 				ChipDescription chipDescription = JsonConvert.DeserializeObject<ChipDescription>(saveString);

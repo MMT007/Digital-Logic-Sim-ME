@@ -17,7 +17,7 @@ namespace DLS.ChipCreation
 
 			if (File.Exists(path))
 			{
-				using (StreamReader reader = new(path))
+				using (StreamReader reader = new StreamReader(path))
 				{
 					string saveString = reader.ReadToEnd();
 					projectSettings = JsonConvert.DeserializeObject<ProjectSettings>(saveString);
@@ -36,7 +36,7 @@ namespace DLS.ChipCreation
 
 		public static ProjectSettings[] LoadAllProjectSettings()
 		{
-			List<ProjectSettings> allProjectSettings = new();
+			List<ProjectSettings> allProjectSettings = new List<ProjectSettings>();
 
 			string savePath = SavePaths.ProjectsPath;
 			SavePaths.EnsureDirectoryExists(SavePaths.ProjectsPath);

@@ -19,8 +19,8 @@ namespace DLS.ChipCreation.UI
 
 		public void SetUp()
 		{
-			allButtons = new();
-			chipDescriptions = new();
+			allButtons = new List<CustomButton>();
+			chipDescriptions = new List<ChipDescription>();
 			chipCreationManager.ViewedChipChanged += RefreshButtonInteractivity;
 			chipCreationManager.CurrentChipSaved += RefreshButtons;
 			chipCreationManager.SavedChipDeleted += RefreshButtons;

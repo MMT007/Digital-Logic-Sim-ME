@@ -50,7 +50,7 @@ namespace DLS.ChipCreation
 
 		public virtual void Delete()
 		{
-			if (AllPins is not null)
+			if (AllPins != null)
 			{
 				foreach (Pin pin in AllPins)
 				{

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using DLS.ChipData;
 using UnityEngine;
 using System.Linq;
+using MMT007Utils;
 
 namespace DLS.ChipCreation
 {
@@ -33,7 +34,7 @@ namespace DLS.ChipCreation
 			{
 				Wire.AddAnchorPoint(points[i]);
 			}
-			pinB.transform.position = points[^1];
+			pinB.transform.position = ListUtils.GetFromEnd(points,1);
 			PlacePin();
 			FinishPlacing();
 		}

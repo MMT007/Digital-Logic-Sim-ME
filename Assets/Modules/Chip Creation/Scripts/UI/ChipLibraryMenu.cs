@@ -24,7 +24,7 @@ namespace DLS.ChipCreation.UI
 		[SerializeField] RectTransform contentHolder;
 		[SerializeField] ConfirmationPopup confirmationPopup;
 
-		bool hasSelectedChip => selectedButton is not null;
+		bool hasSelectedChip => selectedButton != null;
 		ChipDescription selectedChipDescription;
 		CustomButton selectedButton;
 

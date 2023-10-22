@@ -126,7 +126,7 @@ namespace DLS.VideoTools
 			Debug.Log("Playback Started");
 
 			mode = Mode.Playback;
-			if (replayController is not null)
+			if (replayController != null)
 			{
 				replayController.Dispose();
 			}
@@ -177,11 +177,11 @@ namespace DLS.VideoTools
 
 		void OnDestroy()
 		{
-			if (trace is not null)
+			if (trace != null)
 			{
 				trace.Dispose();
 			}
-			if (replayController is not null)
+			if (replayController != null)
 			{
 				replayController.Dispose();
 			}

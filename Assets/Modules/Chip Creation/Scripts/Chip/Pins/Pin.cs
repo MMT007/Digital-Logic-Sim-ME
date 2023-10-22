@@ -17,9 +17,9 @@ namespace DLS.ChipCreation
 
 		public string PinName { get; private set; }
 		public PinType GetPinType() => pinType;
-		public bool IsInputType => pinType is PinType.ChipInputPin or PinType.SubChipInputPin;
-		public bool BelongsToSubChip => pinType is PinType.SubChipInputPin or PinType.SubChipOutputPin;
-		public bool IsSourcePin => pinType is PinType.ChipInputPin or PinType.SubChipOutputPin;
+		public bool IsInputType => pinType == PinType.ChipInputPin || pinType == PinType.SubChipInputPin;
+		public bool BelongsToSubChip => pinType == PinType.SubChipInputPin || pinType == PinType.SubChipOutputPin;
+		public bool IsSourcePin => pinType == PinType.ChipInputPin || pinType == PinType.SubChipOutputPin;
 		public bool IsTargetPin => !IsSourcePin;
 		public bool IsHighlighted => activeHighlightState != HighlightState.None;
 		public bool IsBusPin { get; set; }

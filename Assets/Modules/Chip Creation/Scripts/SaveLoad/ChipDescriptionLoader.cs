@@ -9,9 +9,9 @@ namespace DLS.ChipCreation
 {
 	public static class ChipDescriptionLoader
 	{
-		public static ReadOnlyCollection<ChipDescription> AllChips => new(builtinChips.Concat(customChips).ToList());
-		public static ReadOnlyCollection<ChipDescription> BuiltinChips => new(builtinChips);
-		public static ReadOnlyCollection<ChipDescription> CustomChips => new(customChips);
+		public static ReadOnlyCollection<ChipDescription> AllChips => new ReadOnlyCollection<ChipDescription>(builtinChips.Concat(customChips).ToList());
+		public static ReadOnlyCollection<ChipDescription> BuiltinChips => new ReadOnlyCollection<ChipDescription>(builtinChips);
+		public static ReadOnlyCollection<ChipDescription> CustomChips => new ReadOnlyCollection<ChipDescription>(customChips);
 		// Lookup chip description by name (case-insensitive)
 		static Dictionary<string, ChipDescription> chipLookup;
 		static List<ChipDescription> builtinChips;

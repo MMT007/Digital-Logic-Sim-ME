@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Collections.ObjectModel;
 using SebInput;
+using MMT007Utils;
 
 namespace DLS.ChipCreation
 {
@@ -12,7 +13,7 @@ namespace DLS.ChipCreation
 		public Pin SourcePin { get; private set; }
 		public Pin TargetPin { get; private set; }
 		public bool IsConnected { get; private set; }
-		public ReadOnlyCollection<Vector2> AnchorPoints => new(anchorPoints);
+		public ReadOnlyCollection<Vector2> AnchorPoints => new ReadOnlyCollection<Vector2>(anchorPoints);
 		public MouseInteraction<Wire> MouseInteraction { get; private set; }
 		public bool IsBusWire { get; private set; }
 		public Vector2 CurrentDrawToPoint { get; private set; }
@@ -77,7 +78,7 @@ namespace DLS.ChipCreation
 			if ((SourcePin.IsBusPin || TargetPin.IsBusPin) && !IsBusWire)
 			{
 				busConnectionDot.sharedMaterial = new Material(busConnectionDot.sharedMaterial);
-				Vector2 busConnectionPoint = SourcePin.IsBusPin ? anchorPoints[0] : anchorPoints[^1];
+				Vector2 busConnectionPoint = SourcePin.IsBusPin ? anchorPoints[0] : ListUtils.GetFromEnd(anchorPoints,1);
 				busConnectionDot.gameObject.SetActive(true);
 				busConnectionDot.transform.position = busConnectionPoint.WithZ(RenderOrder.busConnectionDot);
 				busConnectionDot.transform.localScale = Vector3.one * DisplaySettings.PinSize * 0.6f;
@@ -121,7 +122,7 @@ namespace DLS.ChipCreation
 		public void DrawToPoint(Vector2 targetPoint)
 		{
 			// Only draw wire to target point if an anchor point exists, and target point is not on top of last anchor point
-			if (anchorPoints.Count > 0 && (anchorPoints[^1] - targetPoint).sqrMagnitude > 0.001f)
+			if (anchorPoints.Count > 0 && (ListUtils.GetFromEnd(anchorPoints,1) - targetPoint).sqrMagnitude > 0.001f)
 			{
 				CurrentDrawToPoint = targetPoint;
 				List<Vector2> points = new List<Vector2>(anchorPoints);
@@ -143,7 +144,7 @@ namespace DLS.ChipCreation
 		public void AddAnchorPoint(Vector2 point)
 		{
 			// Don't add point if too close to previous anchor point
-			if (anchorPoints.Count == 0 || (anchorPoints[^1] - point).sqrMagnitude > 0.01f)
+			if (anchorPoints.Count == 0 || (ListUtils.GetFromEnd(anchorPoints,1) - point).sqrMagnitude > 0.01f)
 			{
 				anchorPoints.Add(point);
 			}
@@ -176,7 +177,7 @@ namespace DLS.ChipCreation
 		void UpdatePosition()
 		{
 			Vector2 deltaA = (Vector2)SourcePin.transform.position - anchorPoints[0];
-			Vector2 deltaB = (Vector2)TargetPin.transform.position - anchorPoints[^1];
+			Vector2 deltaB = (Vector2)TargetPin.transform.position - ListUtils.GetFromEnd(anchorPoints,1);
 			bool moveA = deltaA.magnitude > 0.001f && !SourcePin.IsBusPin;
 			bool moveB = deltaB.magnitude > 0.001f && !TargetPin.IsBusPin;
 
@@ -193,7 +194,7 @@ namespace DLS.ChipCreation
 			}
 			else if (moveB)
 			{
-				anchorPoints[^1] += deltaB;
+				anchorPoints[anchorPoints.Count - 1] += deltaB;
 			}
 
 			if (moveA || moveB)
@@ -246,7 +247,7 @@ namespace DLS.ChipCreation
 
 		void OnDestroy()
 		{
-			if (SourcePin is not null)
+			if (SourcePin != null)
 			{
 				SourcePin.PinMoved -= OnPinMove;
 				TargetPin.PinMoved -= OnPinMove;

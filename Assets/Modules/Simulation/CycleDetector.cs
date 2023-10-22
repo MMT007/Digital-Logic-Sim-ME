@@ -11,7 +11,7 @@ namespace DLS.Simulation
 
 		public static void MarkCycles(SimChipDescription simChipDescription)
 		{
-			Dictionary<int, SimPinConnection[]> connectionsOutByChipID = new();
+			Dictionary<int, SimPinConnection[]> connectionsOutByChipID = new Dictionary<int, SimPinConnection[]>();
 
 			// Only interested in connections between the subchips of the current chip (i.e. no connections involving chip's own input/output pins)
 			SimPinConnection[] interSubChipConnections = simChipDescription.AllConnections.Where(c => c.Source.BelongsToSubChip && c.Target.BelongsToSubChip).ToArray();

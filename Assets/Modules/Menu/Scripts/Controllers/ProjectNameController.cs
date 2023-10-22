@@ -23,7 +23,7 @@ namespace DLS.MainMenu
 
 		public void ResetController()
 		{
-			allExistingProjectNames = new(ProjectSettingsLoader.LoadAllProjectSettings().Select(p => p.ProjectName), System.StringComparer.OrdinalIgnoreCase);
+			allExistingProjectNames = new HashSet<string>(ProjectSettingsLoader.LoadAllProjectSettings().Select(p => p.ProjectName), System.StringComparer.OrdinalIgnoreCase);
 
 			inputField.Select();
 			inputField.SetTextWithoutNotify("");

@@ -53,10 +53,10 @@ namespace SebInput.Internal
 
 		void Init()
 		{
-			listenersWithMouseOver = new();
-			listenersWithoutMouseOver = new();
-			listenersWithLeftMouseDown = new();
-			listenersWithRightMouseDown = new();
+			this.listenersWithMouseOver = new List<MouseInteractionListener>();
+			this.listenersWithoutMouseOver = new List<MouseInteractionListener>();
+			this.listenersWithLeftMouseDown = new HashSet<MouseInteractionListener>();
+			this.listenersWithRightMouseDown = new HashSet<MouseInteractionListener>();
 
 			lastHit = null;
 			instance = this;
@@ -137,7 +137,7 @@ namespace SebInput.Internal
 
 		void NotifyMouseEnter(Transform enter)
 		{
-			if (enter is not null)
+			if (enter != null)
 			{
 				// Only consider listeners who aren't already registered as having mouse over them.
 				// This is so a listener which is the parent of multiple colliders will only be notified for the first one the mouse enters.

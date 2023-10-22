@@ -18,7 +18,7 @@ namespace DLS.ChipCreation.UnityEditorScripts
 			}
 
 
-			using (EditorGUI.DisabledGroupScope scope = new(!Application.isPlaying))
+			using (EditorGUI.DisabledGroupScope scope = new EditorGUI.DisabledGroupScope(!Application.isPlaying))
 			{
 				if (GUILayout.Button("Resave All"))
 				{

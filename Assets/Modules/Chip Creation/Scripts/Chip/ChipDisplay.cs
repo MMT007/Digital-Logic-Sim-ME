@@ -60,7 +60,7 @@ namespace DLS.ChipCreation
 			nameDisplay.color = ColourHelper.TextBlackOrWhite(chipColour);
 
 			// Calculate chip size
-			Vector2 displaySize = showChipName ? nameDisplay.GetPreferredValues() : body.transform.localScale;
+			Vector2 displaySize = showChipName ? nameDisplay.GetPreferredValues() : new Vector2(body.transform.localScale.x, body.transform.localScale.y);
 			float chipSizeX = displaySize.x + (showChipName ? paddingX : 0);
 			float maxPinsOnOneSide = Mathf.Max(chipDescription.InputPins.Length, chipDescription.OutputPins.Length);
 			float pinSpawnLength = maxPinsOnOneSide * DisplaySettings.PinSize + Mathf.Max(0, maxPinsOnOneSide - 1) * pinSpacingFactor;
@@ -153,7 +153,7 @@ namespace DLS.ChipCreation
 			string[] words = name.Split(' ');
 			int maxWordLength = words.Max(w => w.Length);
 
-			List<string> lines = new();
+			List<string> lines = new List<string>();
 			string currLine = "";
 
 			for (int i = 0; i < words.Length; i++)

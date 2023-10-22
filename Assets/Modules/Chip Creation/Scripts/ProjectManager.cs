@@ -44,7 +44,7 @@ namespace DLS.ChipCreation
 		void Start()
 		{
 			QualitySettings.maxQueuedFrames = 1;
-			viewChain = new();
+			viewChain = new List<View>();
 			viewChainBackButton.onClick.AddListener(ViewChainBackStep);
 
 			bool skippedMenu = string.IsNullOrEmpty(startupProjectName); // loaded directly into the scene (editor only)
@@ -191,7 +191,7 @@ namespace DLS.ChipCreation
 		// Closes the current chip editor, as well as any editors that are being used to view subchips
 		void CloseAllEditors()
 		{
-			if (ActiveViewChipEditor is not null)
+			if (ActiveViewChipEditor != null)
 			{
 				Destroy(ActiveEditChipEditor.gameObject);
 			}
@@ -213,7 +213,7 @@ namespace DLS.ChipCreation
 		{
 			// Create list of chip descriptions that need to be saved. Typically this is just the current chip,
 			// but if the current chip is already being used inside of other chips, then their descriptions may need updating as well.
-			List<ChipDescription> allDescriptionsToSave = new() { descriptionToSave };
+			List<ChipDescription> allDescriptionsToSave = new List<ChipDescription>() { descriptionToSave };
 
 			// Saving a brand new chip
 			if (isFirstTimeSaving)

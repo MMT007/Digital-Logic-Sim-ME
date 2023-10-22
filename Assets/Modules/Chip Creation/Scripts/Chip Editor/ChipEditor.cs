@@ -34,7 +34,7 @@ namespace DLS.ChipCreation
 		// Misc data
 		public ChipDescription LastSavedDescription { get; private set; }
 		public string ProjectName => Settings.ProjectName;
-		public ReadOnlyCollection<ChipBase> AllSubChips => new(allSubChips);
+		public ReadOnlyCollection<ChipBase> AllSubChips => new ReadOnlyCollection<ChipBase>(allSubChips);
 		public ProjectSettings Settings;
 		public Palette ColourThemes => palette;
 
@@ -60,7 +60,7 @@ namespace DLS.ChipCreation
 
 			CanEdit = !isViewOnly;
 			Settings = settings;
-			PinInteractions = new();
+			PinInteractions = new MouseInteractionGroup<Pin>();
 
 			controllers = GetComponentsInChildren<ControllerBase>();
 			ChipPlacer = controllers.OfType<ChipPlacer>().First();
@@ -90,8 +90,7 @@ namespace DLS.ChipCreation
 		void OnEnable()
 		{
 			ChipEditorActions?.Enable();
-			if (Settings != null)
-			{
+			if (Settings != null){
 				UpdatePinDisplaySettings();
 			}
 		}
@@ -240,7 +239,7 @@ namespace DLS.ChipCreation
 			SubChipAdded?.Invoke(newChip);
 			newChip.ChipDeleted += OnChipDeleted;
 
-			if (newChip.MouseInteraction is not null)
+			if (newChip.MouseInteraction != null)
 			{
 
 				newChip.MouseInteraction.MouseEntered += (chip) => ChipUnderMouse = chip;

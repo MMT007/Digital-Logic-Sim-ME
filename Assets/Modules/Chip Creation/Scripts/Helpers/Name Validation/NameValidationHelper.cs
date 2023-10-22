@@ -7,9 +7,9 @@ namespace DLS.ChipCreation
 	public static class NameValidationHelper
 	{
 		// Don't allow these characters in project/chip names as they are illegal (or behave strangely) in some operating systems.
-		public static readonly HashSet<char> ForbiddenChars = new(new char[] { '<', '>', ':', '"', '/', '\\', '|', '?', '*', '.' });
+		public static readonly HashSet<char> ForbiddenChars = new HashSet<char>(new char[] { '<', '>', ':', '"', '/', '\\', '|', '?', '*', '.' });
 		// Reserved file names on windows, or in the save-system
-		public static readonly HashSet<string> ReservedNames = new(new string[]
+		public static readonly HashSet<string> ReservedNames = new HashSet<string>(new string[]
 		{
 			"CON",
 			"PRN",

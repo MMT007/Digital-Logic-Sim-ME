@@ -18,7 +18,7 @@ namespace DLS.ChipCreation
 		// Returns the descriptions of all chips that use the given chip as a direct subchip
 		public static ChipDescription[] GetParentChipDescriptions(string chipName)
 		{
-			List<ChipDescription> parents = new();
+			List<ChipDescription> parents = new List<ChipDescription>();
 
 			if (!string.IsNullOrWhiteSpace(chipName))
 			{
@@ -73,7 +73,7 @@ namespace DLS.ChipCreation
 		public static void RemoveSubChip(ref ChipDescription description, string subchipName)
 		{
 			HashSet<int> removedSubChipIDs = new HashSet<int>();
-			List<ChipInstanceData> filteredSubchips = new();
+			List<ChipInstanceData> filteredSubchips = new List<ChipInstanceData>();
 			for (int i = 0; i < description.SubChips.Length; i++)
 			{
 				if (description.SubChips[i].Name == subchipName)
@@ -99,7 +99,7 @@ namespace DLS.ChipCreation
 		public static void RemoveConnectionsToDeletedPins(ref ChipDescription description, int[] deletedPinIDs, string modifiedSubChipName)
 		{
 			HashSet<int> removedPinIDs = new HashSet<int>(deletedPinIDs);
-			HashSet<int> subchipIDs = new(description.SubChips.Where(s => s.Name == modifiedSubChipName).Select(s => s.ID));
+			HashSet<int> subchipIDs = new HashSet<int>(description.SubChips.Where(s => s.Name == modifiedSubChipName).Select(s => s.ID));
 			description.Connections = description.Connections.Where(c => !DeleteConnection(c)).ToArray();
 
 			bool DeleteConnection(ConnectionDescription connection)

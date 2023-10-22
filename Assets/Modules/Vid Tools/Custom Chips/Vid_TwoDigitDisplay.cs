@@ -86,7 +86,8 @@ namespace DLS.VideoTools
 			string valString = states.Split('\n')[Mathf.Abs(digit)];
 			if (blank)
 			{
-				valString = states.Split('\n')[^1];
+				string[] split = states.Split('\n');
+				valString = split[split.Length -1];
 			}
 
 			for (int i = 0; i < display.Length; i++)

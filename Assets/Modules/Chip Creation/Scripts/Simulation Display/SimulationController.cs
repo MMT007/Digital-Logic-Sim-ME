@@ -84,7 +84,7 @@ namespace DLS.ChipCreation
 		void Update()
 		{
 
-			if (runSimulation && simulator is not null)
+			if (runSimulation && simulator != null)
 			{
 				var sw = System.Diagnostics.Stopwatch.StartNew();
 				RunSimulationFrame();
