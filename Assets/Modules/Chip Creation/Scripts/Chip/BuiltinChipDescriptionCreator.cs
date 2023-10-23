@@ -18,8 +18,8 @@ namespace DLS.ChipCreation
 				CreateClockDescription(),
 				CreateBuiltinTriStateBuffer(),
 				CreateBuiltinSevenSegmentDisplay(),
-				CreateBusDescription()
-				
+				CreateBusDescription(),
+				CreateMXDescription()
 			};
 		}
 
@@ -74,6 +74,14 @@ namespace DLS.ChipCreation
 			string[] inputNames = new string[] { "Freq 1", "Freq 0" };
 			string[] outputNames = new string[] { "Out" };
 			Color col = new Color(0, 0, 0);
+			return EmptyChipDescriptionCreator.CreateEmptyChipDescription(name, inputNames, outputNames, col);
+		}
+		static ChipDescription CreateMXDescription()
+		{
+			string name = BuiltinChipNames.MXName;
+			string[] inputNames = new string[] { "1", "2" };
+			string[] outputNames = new string[] { "A", "B", "C", "D" };
+			Color col = new Color(0.1f, 0.1f, 0.1f);
 			return EmptyChipDescriptionCreator.CreateEmptyChipDescription(name, inputNames, outputNames, col);
 		}
 	}

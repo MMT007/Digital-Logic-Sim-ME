@@ -1,0 +1,8 @@
+<color=#D1A2FF>void</color> <color=#68AFFD>ProcessMX</color>()
+{
+	<color=#D0A7F8>var</color> input = <color=#FFFFFF>inputPins</color>[<color=#EE815B>0</color>].<color=#FFFFFF>State</color>.<color=#68AFFD>ToInt</color>() << <color=#EE815B>1</color> | <color=#FFFFFF>inputPins</color>[<color=#EE815B>0</color>].<color=#FFFFFF>State</color>.<color=#68AFFD>ToInt</color>();
+	
+	<color=#D1A2FF>for</color> (<color=#D1A2FF>int</color> i = <color=#EE815B>0</color>; i < <color=#FFFFFF>outputPins</color>.Length; i<color=#C6EDFF>++</color>){
+		outputPins[i].<color=#FFFFFF>State</color> = i == input ? <color=#FF875A>HIGH</color> : <color=#FF875A>LOW</color>;
+	}
+}

@@ -12,6 +12,7 @@ namespace DLS.ChipData
 		public const string SevenSegmentDisplayName = "7-SEGMENT DISPLAY";
 		public const string BusName = "BUS";
 		public const string ClockName = "CLOCK";
+		public const string MXName = "MULTIPLEXER";
 
 		static readonly string[] allNames = new string[]
 		{
@@ -20,7 +21,8 @@ namespace DLS.ChipData
 			TriStateBufferName,
 			SevenSegmentDisplayName,
 			BusName,
-			ClockName
+			ClockName,
+			MXName
 		};
 
 		public static bool IsBuiltinName(string chipName, bool ignoreCase = true)

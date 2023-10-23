@@ -3,7 +3,19 @@ guid: 5998498f8230b7d478b28967aee81b08
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - codeFile_And: {instanceID: 0}
+  - codeFile_Not: {instanceID: 0}
+  - codeFile_Clock: {instanceID: 0}
+  - codeFile_TristateBuffer: {instanceID: 0}
+  - codeFile_SevenSegDisplay: {instanceID: 0}
+  - codeFile_Multiplexer: {fileID: 4900000, guid: 2752a235bd60dad44aa44e715d2f2c10, type: 3}
+  - holder: {instanceID: 0}
+  - codeFile: {instanceID: 0}
+  - codeTextDisplay: {instanceID: 0}
+  - background: {instanceID: 0}
+  - outline: {instanceID: 0}
+  - builtinChipLabel: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

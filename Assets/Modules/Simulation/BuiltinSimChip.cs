@@ -62,6 +62,16 @@ namespace DLS.Simulation
 			outputPins[0].ReceiveInput(inputPins[0].State);
 		}
 
+		void ProcessMX(){
+			//Converts Binary To Decimal From Both Inputs
+            int input = inputPins[0].State.ToInt() << 1 | inputPins[1].State.ToInt();
+        
+			//Resets Pins
+            for(int i = 0; i < outputPins.Length;i++){
+				outputPins[i].ReceiveInput(i == input ? PinState.HIGH : PinState.LOW);
+			}
+		}
+
 		void ProcessClock()
 		{
 			// Calculate frequency mode from inputs. Possible values: 0, 1, 2, 3
