@@ -1,0 +1,13 @@
+<color=#D1A2FF>void</color> <color=#68AFFD>UpdatePixelDisplay</color>()
+{
+	<color=#D0A7F8>var</color> index = <color=#EE815B>0</color>;
+
+	<color=#D1A2FF>for</color> (<color=#D1A2FF>int</color> i = <color=#EE815B>0</color>; i < <color=#EE815B>4</color>; i<color=#C6EDFF>++</color>)
+	{
+		index += <color=#FFFFFF>inputPins</color>[i].<color=#FFFFFF>State</color> * <color=#D0A7F8>Math.Pow</color>(<color=#EE815B>0</color>,i);
+	}
+	
+	<color=#EE815B>var</color> Color = (<color=#FFFFFF>inputPins</color>[i].<color=#FFFFFF>State</color>.<color=#FFFFFF>Vect3</color>);
+
+	segments[i].<color=#68AFFD>SetColour</color>(<color=#FFFFFF>Color</color>);
+}

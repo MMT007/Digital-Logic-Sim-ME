@@ -19,7 +19,8 @@ namespace DLS.ChipCreation
 				CreateBuiltinTriStateBuffer(),
 				CreateBuiltinSevenSegmentDisplay(),
 				CreateBusDescription(),
-				CreateMXDescription()
+				CreateMXDescription(),
+				CreateBuiltinPixelDisplay()
 			};
 		}
 
@@ -54,6 +55,15 @@ namespace DLS.ChipCreation
 		{
 			string name = BuiltinChipNames.SevenSegmentDisplayName;
 			string[] inputNames = new string[] { "S", "A", "B", "C", "D", "E", "F", "G" };
+			string[] outputNames = new string[] { };
+			Color col = new Color(0.04f, 0.04f, 0.04f);
+			return EmptyChipDescriptionCreator.CreateEmptyChipDescription(name, inputNames, outputNames, col);
+		}
+
+		static ChipDescription CreateBuiltinPixelDisplay()
+		{
+			string name = BuiltinChipNames.PixelDisplayName;
+			string[] inputNames = new string[] { "1", "2", "3", "4", "R", "G", "B","Set"};
 			string[] outputNames = new string[] { };
 			Color col = new Color(0.04f, 0.04f, 0.04f);
 			return EmptyChipDescriptionCreator.CreateEmptyChipDescription(name, inputNames, outputNames, col);

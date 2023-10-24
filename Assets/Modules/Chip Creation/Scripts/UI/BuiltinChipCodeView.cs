@@ -12,6 +12,7 @@ namespace DLS.ChipCreation.UI
 		[SerializeField] TextAsset codeFile_TristateBuffer;
 		[SerializeField] TextAsset codeFile_SevenSegDisplay;
 		[SerializeField] TextAsset codeFile_Multiplexer;
+		[SerializeField] TextAsset codeFile_PixelDisplay;
 
 		[SerializeField] float backgroundPadding;
 		[SerializeField] float outlinePadding;
@@ -48,6 +49,7 @@ namespace DLS.ChipCreation.UI
 					case BuiltinChipNames.SevenSegmentDisplayName: return codeFile_SevenSegDisplay;
 					case BuiltinChipNames.TriStateBufferName: return codeFile_TristateBuffer;
 					case BuiltinChipNames.MXName: return codeFile_Multiplexer;
+					case BuiltinChipNames.PixelDisplayName: return codeFile_PixelDisplay;
 					default: return null;
 				}
 			}

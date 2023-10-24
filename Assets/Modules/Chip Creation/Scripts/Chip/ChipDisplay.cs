@@ -68,8 +68,8 @@ namespace DLS.ChipCreation
 
 			// Set size
 			Size = new Vector2(chipSizeX, chipSizeY);
-			body.transform.localScale = new Vector3(Size.x, Size.y, 1);
-			bodyOutline.transform.localScale = new Vector3(Size.x + outlineWidth, Size.y + outlineWidth, 1);
+			body.transform.localScale = new Vector3(Size.x, Size.y, .001f);
+			bodyOutline.transform.localScale = new Vector3(Size.x + outlineWidth, Size.y + outlineWidth, .001f);
 			interactionBounds.size = Size + Vector2.one * outlineWidth;
 
 			// Instantiate pins

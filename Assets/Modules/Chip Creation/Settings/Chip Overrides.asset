@@ -20,6 +20,8 @@ MonoBehaviour:
     prefab: {fileID: 7447267253726798738, guid: 16d339669b6f70a449ce59388dba251b, type: 3}
   - chipName: Bus
     prefab: {fileID: 1197897078910754974, guid: 37724c856d342da4cb64e378d6087fca, type: 3}
+  - chipName: PIXEL DISPLAY
+    prefab: {fileID: 5525881931681486072, guid: 7f4f5d561cd5d154bae4fcc832a7559c, type: 3}
   videoChipOverrides:
   - chipName: 4-BIT REGISTER
     prefab: {fileID: 7447267253726798738, guid: edc4063f306380444a47f5020e200746, type: 3}

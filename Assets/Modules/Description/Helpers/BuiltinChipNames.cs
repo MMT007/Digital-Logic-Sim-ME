@@ -10,6 +10,7 @@ namespace DLS.ChipData
 		public const string NotChip = "NOT";
 		public const string TriStateBufferName = "TRI-STATE BUFFER";
 		public const string SevenSegmentDisplayName = "7-SEGMENT DISPLAY";
+		public const string PixelDisplayName = "PIXEL DISPLAY";
 		public const string BusName = "BUS";
 		public const string ClockName = "CLOCK";
 		public const string MXName = "MULTIPLEXER";
@@ -20,6 +21,7 @@ namespace DLS.ChipData
 			NotChip,
 			TriStateBufferName,
 			SevenSegmentDisplayName,
+			PixelDisplayName,
 			BusName,
 			ClockName,
 			MXName
